@@ -34,28 +34,7 @@ namespace T03._Memory_Game
                     continue;
                 }
 
-                if (board[firstIndex] == board[secondIndex])
-                {
-                    Console.WriteLine($"Congrats! You have found matching elements - {board[firstIndex]}!");
-
-                    // a, b, c, d
-                    // 1, 0
-
-                    if (Math.Max(firstIndex, secondIndex) == firstIndex)
-                    {
-                        board.RemoveAt(secondIndex);
-                        board.RemoveAt(firstIndex - 1); 
-                    }
-                    else
-                    {
-                        board.RemoveAt(firstIndex);
-                        board.RemoveAt(secondIndex - 1); 
-                    }
-                }
-                else if (board[firstIndex] != board[secondIndex])
-                {
-                    Console.WriteLine("Try again!");
-                }
+                CheckIfElementsAreMatching(board, firstIndex, secondIndex);
 
                 if (board.Count == 0)
                 {
@@ -67,6 +46,32 @@ namespace T03._Memory_Game
             }
 
             Console.WriteLine($"Sorry you lose :(\n{string.Join(' ', board)}");
+        }
+
+        static void CheckIfElementsAreMatching(List<string> board, int firstIndex, int secondIndex)
+        {
+            if (board[firstIndex] == board[secondIndex])
+            {
+                Console.WriteLine($"Congrats! You have found matching elements - {board[firstIndex]}!");
+
+                // a, b, c, d
+                // 1, 0
+
+                if (Math.Max(firstIndex, secondIndex) == firstIndex)
+                {
+                    board.RemoveAt(secondIndex);
+                    board.RemoveAt(firstIndex - 1);
+                }
+                else
+                {
+                    board.RemoveAt(firstIndex);
+                    board.RemoveAt(secondIndex - 1);
+                }
+            }
+            else if (board[firstIndex] != board[secondIndex])
+            {
+                Console.WriteLine("Try again!");
+            }
         }
     }
 }
